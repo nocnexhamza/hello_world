@@ -15,8 +15,7 @@ pipeline {
         
         stage('Checkout') {
             steps {
-                git branch: 'main', 
-                url: 'https://github.com/nocnexhamza/hello_world.git',
+                 url: 'https://github.com/nocnexhamza/hello_world.git',
                   
                 sh 'ls -la'  // Verify files are present
             }
