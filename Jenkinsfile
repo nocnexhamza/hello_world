@@ -17,8 +17,7 @@ pipeline {
             steps {
                 git branch: 'main', 
                 url: 'https://github.com/nocnexhamza/hello_world.git',
-                #credentialsId: 'your-github-credentials'
-                
+                  
                 sh 'ls -la'  // Verify files are present
             }
         }
