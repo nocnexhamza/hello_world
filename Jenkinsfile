@@ -76,9 +76,9 @@ pipeline {
                 script {
                     withKubeConfig([credentialsId: 'k8s-credentials']) {
                         sh """
-                            sed -i 's|image:.*|image: ${DOCKER_REGISTRY}/${APP_NAME}:${env.BUILD_NUMBER}|g' k8s/deployment.yaml
-                            kubectl apply -f k8s/deployment.yaml
-                            kubectl apply -f k8s/service.yaml
+                            sed -i 's|image:.*|image: ${DOCKER_REGISTRY}/${APP_NAME}:${env.BUILD_NUMBER}|g' deployment.yaml
+                            kubectl apply -f deployment.yaml
+                            kubectl apply -f service.yaml
                             kubectl rollout status deployment/nodejs-hello-world
                         """
                     }
