@@ -46,13 +46,13 @@ pipeline {
             }
         }
         
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    sh 'nerdctl build -t docker.io/nocnex/nodejs-hello-world:${env.BUILD_NUMBER} .'
-                }
-            }
+       stage('Build Docker Image') {
+    steps {
+        script {
+            sh "nerdctl build -t ${DOCKER_REGISTRY}/${APP_NAME}:${env.BUILD_NUMBER} ."
         }
+    }
+}
         
         stage('Push Docker Image') {
             steps {
