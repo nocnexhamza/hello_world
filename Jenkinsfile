@@ -49,7 +49,7 @@ pipeline {
     stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${DOCKER_REGISTRY}/${APP_NAME}:${env.BUILD_NUMBER}")
+                    sh 'sudo docker.build("${DOCKER_REGISTRY}/${APP_NAME}:${env.BUILD_NUMBER}") . '
                 }
             }
         }
