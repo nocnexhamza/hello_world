@@ -53,10 +53,10 @@ pipeline {
     steps {
         script {
             sh '''
-                echo "Setting up rootless containerd environment"
-                export XDG_RUNTIME_DIR=/run/user/$(id -u)
-                nerdctl build -t ${DOCKER_REGISTRY}/${APP_NAME}:${env.BUILD_NUMBER} .
-            '''
+    USER_ID=$(id -u)
+    export XDG_RUNTIME_DIR="/run/user/$USER_ID"
+    nerdctl build -t ${DOCKER_REGISTRY}/${APP_NAME}:${BUILD_NUMBER} .
+'''
         }
     }
 }
