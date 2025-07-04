@@ -47,19 +47,12 @@ pipeline {
         }
         
     stage('Build Docker Image') {
-    environment {
-        XDG_RUNTIME_DIR = '/run/user/$(id -u)'
-    }
-    steps {
-        script {
-            sh '''
-    USER_ID=$(id -u)
-    export XDG_RUNTIME_DIR="/run/user/$USER_ID"
-    nerdctl build -t ${DOCKER_REGISTRY}/${APP_NAME}:${BUILD_NUMBER} .
-'''
+            steps {
+                script {
+                    docker.build("${DOCKER_REGISTRY}/${APP_NAME}:${env.BUILD_NUMBER}")
+                }
+            }
         }
-    }
-}
         
         stage('Push Docker Image') {
             steps {
